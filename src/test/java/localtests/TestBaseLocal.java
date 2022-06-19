@@ -20,14 +20,9 @@ import static io.qameta.allure.Allure.step;
 public class TestBaseLocal {
     @BeforeAll
     public static void setup() {
-        String deviceHost = System.getProperty("deviceHost", "local");
-        if (Objects.equals(deviceHost, "local")) {
-            Configuration.browser = LocalDriver.class.getName();
-        } else {
-            Configuration.browser = BrowserstackMobileDriver.class.getName();
-        }
+        Configuration.browser = LocalDriver.class.getName();
         Configuration.browserSize = null;
-        System.out.println(deviceHost);
+
     }
 
     @BeforeEach
@@ -39,7 +34,6 @@ public class TestBaseLocal {
 
     @AfterEach
     public void afterEach() {
-        String deviceHost = System.getProperty("deviceHost", "local");
 
         String sessionId = sessionId();
 
@@ -47,8 +41,6 @@ public class TestBaseLocal {
         AllureAttachments.pageSource();
 
         step("Close driver", Selenide::closeWebDriver);
-        if (Objects.equals(deviceHost, "browserstack")) {
-            AllureAttachments.video(sessionId);
-        }
+
     }
 }
