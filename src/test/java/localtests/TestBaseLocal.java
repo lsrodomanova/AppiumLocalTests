@@ -10,6 +10,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 
+
 import java.util.Objects;
 
 import static com.codeborne.selenide.Selenide.open;
@@ -20,8 +21,14 @@ import static io.qameta.allure.Allure.step;
 public class TestBaseLocal {
     @BeforeAll
     public static void setup() {
-        Configuration.browser = LocalDriver.class.getName();
+        String deviceHost = System.getProperty("deviceHost", "local");
+        if (Objects.equals(deviceHost, "local")) {
+            Configuration.browser = LocalDriver.class.getName();
+        } else {
+            Configuration.browser = BrowserstackMobileDriver.class.getName();
+        }
         Configuration.browserSize = null;
+        Configuration.browser = LocalDriver.class.getName();
 
     }
 
