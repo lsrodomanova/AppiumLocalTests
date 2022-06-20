@@ -39,12 +39,15 @@ public class TestBaseLocal {
 
     @AfterEach
     public void afterEach() {
+        String deviceHost = System.getProperty("deviceHost", "local");
 
         String sessionId = sessionId();
         AllureAttachments.screenshotAs("Last screenshot");
         AllureAttachments.pageSource();
 
         step("Close driver", Selenide::closeWebDriver);
+        if (Objects.equals(deviceHost, "browserstack")) {
             AllureAttachments.video(sessionId);
+        }
     }
 }
