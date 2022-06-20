@@ -22,20 +22,18 @@ public class TestBaseLocal {
     @BeforeAll
     public static void setup() {
         String deviceHost = System.getProperty("deviceHost", "local");
+
         if (Objects.equals(deviceHost, "local")) {
             Configuration.browser = LocalDriver.class.getName();
         } else {
             Configuration.browser = BrowserstackMobileDriver.class.getName();
         }
         Configuration.browserSize = null;
-        Configuration.browser = LocalDriver.class.getName();
-
     }
 
     @BeforeEach
     public void startDriver() {
         addListener("AllureSelenide", new AllureSelenide());
-
         open();
     }
 
@@ -43,11 +41,10 @@ public class TestBaseLocal {
     public void afterEach() {
 
         String sessionId = sessionId();
-
         AllureAttachments.screenshotAs("Last screenshot");
         AllureAttachments.pageSource();
 
         step("Close driver", Selenide::closeWebDriver);
-
+            AllureAttachments.video(sessionId);
     }
 }
