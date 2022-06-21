@@ -5,37 +5,33 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.back;
 import static io.qameta.allure.Allure.step;
 
 @Tag("appium")
 public class WikiLocalTests extends TestBaseLocal{
-    String firstLanguage= "English";
-    String secondLanguage="Italiano";
 
     @Test
     void WikiTest() {
-        back();
+
         step("Open first page", () -> {
-            $(AppiumBy.id("org.wikipedia.alpha:id/addLangContainer")).click();
-            $(AppiumBy.id("org.wikipedia.alpha:id/section_header_text")).shouldHave(text(firstLanguage));
+            $(AppiumBy.id("org.wikipedia.alpha:id/primaryTextView")).
+                    shouldHave(text("The Free Encyclopedia …in over 300 languages"));
         });
 
         step("Open second page", () -> {
-            $(AppiumBy.id("org.wikipedia.alpha:id/wiki_language_title")).click();
-            $(AppiumBy.className("org.wikipedia.alpha:id/section_header_text")).shouldHave(text("All languages"));
+            $(AppiumBy.xpath("//android.widget.LinearLayout[2]")).click();
+            $(AppiumBy.id("org.wikipedia.alpha:id/primaryTextView")).shouldHave(text("New ways to explore"));
         });
 
         step("Open third page", () -> {
-            $(AppiumBy.id("org.wikipedia.alpha:id/search_container")).find(byText(secondLanguage)).click();
-            $(AppiumBy.className("android.widget.LinearLayout")).shouldHave(text(secondLanguage));
+            $(AppiumBy.xpath("//android.widget.LinearLayout[3]")).click();
+            $(AppiumBy.id("org.wikipedia.alpha:id/primaryTextView")).shouldHave(text("Reading lists with sync"));
         });
 
         step("Open forth page", () -> {
-            $(AppiumBy.className("android.widget.ImageButton")).click();
-            $(AppiumBy.className("android.widget.TextView")).shouldHave(text("The Free Encyclopedia …in over 300 languages"));
+            $(AppiumBy.xpath("//android.widget.LinearLayout[4]")).click();
+            $(AppiumBy.id("org.wikipedia.alpha:id/primaryTextView")).shouldHave(text("Send anonymous data"));
         });
     }
 }
