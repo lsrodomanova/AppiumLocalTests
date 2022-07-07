@@ -1,5 +1,6 @@
-package lubl;
+package tests;
 
+import com.codeborne.selenide.CollectionCondition;
 import io.appium.java_client.AppiumBy;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -9,8 +10,8 @@ import static com.codeborne.selenide.Selenide.*;
 import static io.qameta.allure.Allure.step;
 
 @Tag("android")
-public class WikiTests extends TestBase {
-    /*@Test
+public class SearchTests extends TestBase {
+    @Test
     void searchTest() {
         back();
         step("Type search", () -> {
@@ -20,7 +21,7 @@ public class WikiTests extends TestBase {
         step("Verify content found", () ->
                 $$(AppiumBy.id("org.wikipedia.alpha:id/page_list_item_title"))
                         .shouldHave(CollectionCondition.sizeGreaterThan(0)));
-    }*/
+    }
 
     @Test
     void openTest() {
@@ -32,8 +33,6 @@ public class WikiTests extends TestBase {
         step("Open article", () -> {
             $(AppiumBy.id("org.wikipedia.alpha:id/page_list_item_title")).click();
             $(AppiumBy.className("android.view.View")).click();
-            //$(AppiumBy.className("android.widget.TextView"))
-                    //.shouldHave(Condition.text("Tesla"));
             $(AppiumBy.className("android.widget.TextView")).shouldHave(text("Tesla"));
         });
     }

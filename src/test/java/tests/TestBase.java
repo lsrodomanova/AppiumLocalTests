@@ -1,4 +1,4 @@
-package localtests;
+package tests;
 
 import helpers.AllureAttachments;
 import com.codeborne.selenide.Configuration;
@@ -9,8 +9,6 @@ import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-
-
 import java.util.Objects;
 
 import static com.codeborne.selenide.Selenide.open;
@@ -18,12 +16,11 @@ import static com.codeborne.selenide.logevents.SelenideLogger.addListener;
 import static helpers.AllureAttachments.sessionId;
 import static io.qameta.allure.Allure.step;
 
-public class TestBaseLocal {
+public class TestBase {
 
     static String deviceHost = System.getProperty("deviceHost", "local");
     @BeforeAll
     public static void setup() {
-
 
         if (Objects.equals(deviceHost, "local")) {
             Configuration.browser = LocalDriver.class.getName();
@@ -31,7 +28,6 @@ public class TestBaseLocal {
             Configuration.browser = BrowserstackMobileDriver.class.getName();
         }
         Configuration.browserSize = null;
-
     }
 
     @BeforeEach
@@ -52,6 +48,5 @@ public class TestBaseLocal {
         if (Objects.equals(deviceHost, "browserstack")) {
             AllureAttachments.video(sessionId);
         }
-
     }
 }

@@ -1,0 +1,5 @@
+deviceName = Pixel 4
+osLocalVersion = 11.0
+platformName = andriod
+localURL = http://localhost:4723/wd/hub
+appPath = src/test/resources/apps/app-alpha-universal-release.apk

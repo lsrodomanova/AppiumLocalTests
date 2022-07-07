@@ -1,4 +1,4 @@
-package localtests;
+package tests;
 
 import io.appium.java_client.AppiumBy;
 import org.junit.jupiter.api.Tag;
@@ -9,7 +9,7 @@ import static com.codeborne.selenide.Selenide.$;
 import static io.qameta.allure.Allure.step;
 
 @Tag("appium")
-public class WikiLocalTests extends TestBaseLocal{
+public class OnboardingTests extends TestBase {
 
     @Test
     void WikiTest() {

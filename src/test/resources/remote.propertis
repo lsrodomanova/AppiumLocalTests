@@ -1,0 +1,9 @@
+login = lyubovrodomanova_URK3ks
+key = Bz4pYZGuug7n3stKgjwD
+appURL = bs://483b34460210847a680466c488b28e38f3834027
+baseURL = http://hub.browserstack.com/wd/hub
+device = Google Pixel 3
+os_version = 9.0
+project = First Junit5 Android Project
+build = Junit5 Android First
+name = first_test

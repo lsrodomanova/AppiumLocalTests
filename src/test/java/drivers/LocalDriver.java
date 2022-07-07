@@ -19,7 +19,6 @@ import static org.apache.commons.io.FileUtils.copyInputStreamToFile;
 
 public class LocalDriver implements WebDriverProvider {
     static LocalConfig localConfig = ConfigFactory.create(LocalConfig.class);
-    static String localURL = localConfig.localURL();
     String platformName = localConfig.platformName();
     String deviceName = localConfig.deviceName();
     String osLocalVersion = localConfig.osLocalVersion();
